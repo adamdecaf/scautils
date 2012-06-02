@@ -14,4 +14,13 @@ object RunningCountersHelpers extends Specification {
     }
   }
 
+  "RunningMax" should {
+    "keep track of the highest value" in {
+      RunningMax.start(0)
+      RunningMax.acc(-1)
+      RunningMax.acc(10)
+      RunningMax.get === 10
+    }
+  }
+
 }
