@@ -3,8 +3,8 @@ package org.scautils.math
 import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
 
-object RunningCountersHelpers { 
-  
+object RunningCountersHelpers extends Specification {
+
   "RunningMin" should {
     "keep track of the lowest value." in {
       RunningMin.start(0)

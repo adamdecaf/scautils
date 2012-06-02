@@ -3,8 +3,7 @@ package org.scautils.math
 trait RunningCounterHelper {
   protected var successor = 0
   protected def valueHelper(next: Int)(f: Int => Boolean): Unit = {
-    if (f(next)) successor = next
-    ()
+    (if (f(next)) successor = next)
   }
 
   def start(start: Int): Unit = successor = start; ()
