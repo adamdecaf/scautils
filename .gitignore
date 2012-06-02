@@ -1,6 +1,3 @@
-.DS_Store
-lib
-lib_managed
-project/boot
 target/
-*swp
+lib_managed/
+src_managed/
