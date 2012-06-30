@@ -2,11 +2,10 @@ package org.scautils.math
 
 trait RunningCounterHelper {
   protected var successor = 0
-  protected def valueHelper(next: Int)(f: Int => Boolean): Unit = {
-    (if (f(next)) successor = next)
-  }
+  protected def valueHelper(next: Int)(f: Int => Boolean): Unit =
+    if (f(next)) successor = next
 
-  def start(start: Int): Unit = successor = start; ()
+  def start(start: Int): Unit = successor = start
   def acc(next: Int): Unit
   def get: Int = successor
 }
