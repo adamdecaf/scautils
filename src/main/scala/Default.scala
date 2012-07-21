@@ -1,10 +1,12 @@
 package com.scautils
 
+class ??[T, Default](value: T, default: Default) {
+  def get(cond: T => Boolean) = if (cond(value)) value else default
+}
+
 object ?? {
 
-  def apply[V, Default](cond: => Boolean)(value: V, default: Default) = {
-    if (cond) value
-    else default
-  }
+  def apply[V, Default](value: V, default: Default) =
+    new ??(value, default)
 
 }
