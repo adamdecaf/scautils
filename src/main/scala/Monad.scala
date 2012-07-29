@@ -1,10 +1,12 @@
 package com.scautils
 
-trait Monad extends MonadLaw
+trait Monad[M[_]] {
+  def pure[A](a: A): M[A]
+}
 
-trait MonadLaw[M[A]] {
-  def pure: M[A]
-  def pure(a: A): M[A]
-  def map(f: A => B): M[B]
+trait MonadLaw[M[_]] {
+  this: Monad[M] =>
+
+  def map[A, B](f: A => B): M[B]
 }
 
