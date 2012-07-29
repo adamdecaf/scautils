@@ -1,6 +1,5 @@
 package com.scautils
 
-
 trait Isomorphism[A,B] {
   def apply(in: A): B
   def inverse(in: B): A
