@@ -15,18 +15,16 @@ sealed trait Try[_] {
   }
 
   val isSuccess: Boolean
-  val isFailure: Boolean
+  val isFailure: Boolean = !isSuccess
 
 }
 
-case class Success[A](value: A) extends Try[A] {
+final case class Success[A](value: A) extends Try[A] {
   val isSuccess = true
-  val isFailure = false
 }
 
-case class Failure[A](value: A) extends Try[A] {
+final case class Failure[A](value: A) extends Try[A] {
   val isSuccess = false
-  val isFailure = true
 }
 
 object Try {
