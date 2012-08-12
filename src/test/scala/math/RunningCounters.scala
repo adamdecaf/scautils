@@ -1,4 +1,4 @@
-package org.scautils.math
+package com.scautils.math
 
 import org.specs2.mutable.Specification
 import org.specs2.specification.Scope

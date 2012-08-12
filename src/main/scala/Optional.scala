@@ -4,6 +4,10 @@ trait Optional {
   def apply[T](in: T): Option[T]
 }
 
+object none {
+  def apply[T] = Option.empty[T]
+}
+
 object Optional {
 
   def apply[T <: { def isEmpty: Boolean }](obj: T) = {

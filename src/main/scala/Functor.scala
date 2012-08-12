@@ -1,3 +1,4 @@
+
 package com.scautils
 
 trait Functor[F[_]] extends FunctorLaw[F]

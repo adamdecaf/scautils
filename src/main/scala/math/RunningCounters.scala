@@ -1,4 +1,4 @@
-package org.scautils.math
+package com.scautils.math
 
 trait RunningCounterHelper {
   protected var successor = 0
@@ -17,3 +17,17 @@ object RunningMin extends RunningCounterHelper {
 object RunningMax extends RunningCounterHelper {
   def acc(next: Int): Unit = valueHelper(next)(_ > successor)
 }
+
+/*
+class RunningCounter[T <: Numeric[_]](start: T, cond: (T, T) => Boolean) {
+  private var successor: T = _
+
+  def acc(next: T) = if(cond(successor, next)) successor = next
+  def get = successor
+}
+
+object RunningCounter {
+  def apply[T <: Numeric[_]](start: T) =
+    new RunningCounter[T](start, cond)
+}
+*/
