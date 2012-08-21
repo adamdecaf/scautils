@@ -4,11 +4,11 @@ package com.scautils
 // and have the results zip through...
 // Notes: Create a (Chain[A] => (f: A => _) => Chain[A])* version
 
-object Chain {
-  def apply[A] =
-    new Chain[A]
-}
+// object Chain {
+//   def apply[A] =
+//     new Chain[A]
+// }
 
-final class Chain[_] {
-  def |&|: (f: _ => _) => (implicit Chain[_]) => Chain[_]
-}
+// final class Chain[_] {
+//   def |&|: (f: _ => _) => (implicit Chain[_]) => Chain[_]
+// }
