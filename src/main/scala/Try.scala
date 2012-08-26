@@ -1,40 +1,43 @@
 package com.scautils
 
-sealed trait Try[_] {
+sealed trait Try[A] {
 
-  def map[A, B](f: A => B): Try[_] = this match {
-    case Success(e: A) => Success(f(e))
-    case Failure(e: A) => Failure(e)
+  def isSuccess: Boolean
+  def isFailure: Boolean = !isSuccess
+
+  def map[B](f: A => B) = this match {
+    case Success(e) => Success(f(e))
+    case Failure(e) => Failure(e)
   }
 
-  def fold[T](failure: Any => T, success: Any => T): T = {
-    if (this.isInstanceOf[Success[_]])
-      failure(this)
-    else
-      success(this)
+  def fold[T](failure: A => T, success: A => T) = this match {
+    case Success(obj) => success(obj)
+    case Failure(obj) => failure(obj)
   }
 
-  val isSuccess: Boolean
-  val isFailure: Boolean = !isSuccess
+  def fold[B](z: B)(f: (A, B) => Try[B]) = this match {
+    case Success(obj) => f(obj, z)
+    case Failure(_) => z
+  }
 
 }
 
 final case class Success[A](value: A) extends Try[A] {
-  val isSuccess = true
+  def isSuccess = true
 }
 
-final case class Failure[A](value: A) extends Try[A] {
-  val isSuccess = false
+final case class Failure[A <: Throwable](value: A) extends Try[A] {
+  def isSuccess = false
 }
 
 object Try {
 
-  def apply[A](result: A) = {
+  def apply[A](result: => A): Try[_] =
     try {
-      Success(result)
+      return Success[A](result)
     } catch {
-      case e => Failure(e)
+      case e: Throwable =>
+        return Failure(e)
     }
-  }
 
 }
