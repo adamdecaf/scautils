@@ -3,19 +3,19 @@ package com.scautils
 sealed trait Try[A] {
 
   def isSuccess: Boolean
-  def isFailure: Boolean = !isSuccess
+  def isFailure: Boolean
 
-  def map[B](f: A => B) = this match {
+  def map[B](f: A => B): Try[B] = this match {
     case Success(e) => Success(f(e))
     case Failure(e) => Failure(e)
   }
 
-  def fold[T](failure: A => T, success: A => T) = this match {
+  def fold[T](failure: Throwable => T, success: A => T): T = this match {
     case Success(obj) => success(obj)
     case Failure(obj) => failure(obj)
   }
 
-  def fold[B](z: B)(f: (A, B) => Try[B]) = this match {
+  def fold[B](z: B)(f: (A, B) => B): B = this match {
     case Success(obj) => f(obj, z)
     case Failure(_) => z
   }
@@ -24,20 +24,23 @@ sealed trait Try[A] {
 
 final case class Success[A](value: A) extends Try[A] {
   def isSuccess = true
+  def isFailure = false
 }
 
-final case class Failure[A <: Throwable](value: A) extends Try[A] {
+final case class Failure[A](value: Throwable) extends Try[A] {
   def isSuccess = false
+  def isFailure = true
 }
 
 object Try {
+  import scala.util.control.NonFatal
 
-  def apply[A](result: => A): Try[_] =
+  def apply[A](result: => A) = {
     try {
-      return Success[A](result)
+      Success(result)
     } catch {
-      case e: Throwable =>
-        return Failure(e)
+      case NonFatal(e) => Failure(e)
     }
+  }
 
 }

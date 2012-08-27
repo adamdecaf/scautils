@@ -9,20 +9,18 @@ object TrySpec extends Specification {
       val fail = Try("str".asInstanceOf[Char])
       val good = Try(12)
 
-      //fail.isInstanceOf[Failure[_]] must beTrue
-      //good === Success(12)
-      1 === 2
-    }.pendingUntilFixed
+      fail.isInstanceOf[Failure[_]] must beTrue
+      good === Success(12)
+    }
 
     "work for mapping and folding over results" in {
       val fail = Try("str".asInstanceOf[Char])
       val good = Try(12)
 
-      //good.map(_.toLong) === Success(12L)
-      //good.fold(_ * 3, _ + 0) === Success(12)
-      //fail.fold(0)((a: Int) => (b: Int) => a * b) === Failure(0)
-      1 === 2
-    }.pendingUntilFixed
+      good.map(_.toLong) === Success(12L)
+      good.fold(println(_), _ * 2) === Success(12)
+    //   //fail.fold(0)((e: Any, b: Int) => b).value.isInstanceOf[java.lang.ClassCastException] must beTrue
+    }
   }
 
 }
