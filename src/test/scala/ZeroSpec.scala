@@ -1,40 +1,44 @@
 package com.scautils
 
 import org.specs2.mutable.Specification
+import scala.collection.immutable.{Queue, Stack}
+import Zero._
 
 object ZeroSpec extends Specification {
-  import scala.collection.immutable.{Queue, Stack}
 
-  "Using Zero on a bunch of different collections" should {
-    "work for Zero[_]" in {
-      val byte: Byte = 1
-      Zero(byte).zero   == byte must beTrue
-      Zero(false).zero      === true
-      Zero("a".head).zero   === "a".head
-      Zero(1.toDouble).zero === 1.toDouble
-      Zero(1.toFloat).zero  === 1.toFloat
-      Zero(1).zero          === 1
-      Zero(1L).zero         === 1L
-      //Zero("some").zero     === ""
-      Zero(()).zero             === ()
+  "Using Zero" should {
+    "work for the primitive types" in {
+      mzero[Unit].zero    === ()
+      mzero[BigInt].zero  === BigInt(0)
+      mzero[Byte].zero    === 0.toByte
+      mzero[Boolean].zero === false
+      mzero[Char].zero    === 0.toChar
+      mzero[Double].zero  === 0D
+      mzero[Float].zero   === 0F
+      mzero[Int].zero     === 0
+      mzero[Long].zero    === 0L
+      mzero[Short].zero   === 0.toShort
+      mzero[String].zero  === ""
     }
 
-    "work for Zero[_[_]]" in {
-      Zero(Stack(1)).zero   === Stack[Int]()
-      Zero(Stream(1)).zero  === Stream[Int]()
-      Zero(Vector(1)).zero  === Vector[Int]()
-      Zero(Array(1)).zero   === Array[Int]()
-      Zero(List(1)).zero    === List[Int]()
-      Zero(Some(1)).zero    ==  Option.empty[Int] must beTrue
-      Zero(Queue(1)).zero   === Queue[Int]()
-      Zero(Seq(1)).zero     === Seq[Int]()
-      Zero(Set(1)).zero     === Set[Int]()
+    "work for types that have one type parameter" in {
+      case class A()
+      mzero[Stack[A]].zero  === Stack[A]()
+      mzero[Stream[A]].zero === Stream[A]()
+      mzero[Vector[A]].zero === Vector[A]()
+      mzero[Array[A]].zero  === Array[A]()
+      mzero[List[A]].zero   === List[A]()
+      mzero[Option[A]].zero === Option.empty[A]
+      mzero[Queue[A]].zero  === Queue[A]()
+      mzero[Seq[A]].zero    === Seq[A]()
+      mzero[Set[A]].zero    === Set[A]()
     }
 
-    "work for Zero[_[_,_]]" in pending
-    // {
-    //   Zero[Int, String, Map](Map(1 -> "")).zero === Map[Int, String]()
-    // }.pendingUntilFixed
+    "work for types that have two type parameters" in {
+      case class B()
+      case class C()
+      mzero[Map[B, C]].zero === Map[B, C]()
+    }
   }
 
 }

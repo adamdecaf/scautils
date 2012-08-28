@@ -32,8 +32,12 @@ trait Zeros {
   implicit def QueueZero[A] = new Zero[Queue[A]] { val zero: Queue[A] = Queue[A]() }
   implicit def SeqZero[A] = new Zero[Seq[A]] { val zero: Seq[A] = Seq[A]() }
   implicit def SetZero[A] = new Zero[Set[A]] { val zero: Set[A] = Set[A]() }
+
+  implicit def MapZero[A, B] = new Zero[Map[A,B]] { val zero: Map[A, B] = Map[A, B]() }
 }
 
 object Zero extends Zeros {
+
   def mzero[A](implicit zero: Zero[A]) = zero
+
 }
