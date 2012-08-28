@@ -18,8 +18,7 @@ object TrySpec extends Specification {
       val good = Try(12)
 
       good.map(_.toLong) === Success(12L)
-      good.fold(println(_), _ * 2) === Success(12)
-    //   //fail.fold(0)((e: Any, b: Int) => b).value.isInstanceOf[java.lang.ClassCastException] must beTrue
+      good.fold(println(_), _ * 2) === 24
     }
   }
 
