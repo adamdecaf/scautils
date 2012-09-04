@@ -11,5 +11,3 @@ resolvers ++= Seq(
   "releases"  at "http://oss.sonatype.org/content/repositories/releases",
   "typesafe" at "http://repo.typesafe.com/typesafe/ivy-releases/"
 )
-
-
