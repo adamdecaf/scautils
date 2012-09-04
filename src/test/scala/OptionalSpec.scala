@@ -3,6 +3,7 @@ package com.scautils
 import org.specs2.mutable.Specification
 
 object OptionalSpec extends Specification {
+  import Optionals._
 
   "The Optional object" should {
     "be able to work on booleans" in {
@@ -17,17 +18,15 @@ object OptionalSpec extends Specification {
       Optional(1)     === Some(1)
       Optional(1L)    === Some(1L)
       Optional(1.1)   === Some(1.1)
+      Optional(BigInt(0)) === None
+      Optional(1F)    === Some(1F)
+      Optional(1D)    === Some(1D)
     }
 
     "be able to work on lots of standard library structures" in {
       Optional(Seq()) === None
       Optional(None) === None
-      Optional(Seq(Seq())) === None
-    }.pendingUntilFixed
-
-    "be able to take Eithers" in {
-      Optional(Right("as")) === Some("as")
-      Optional(Left(new Throwable)) === None
+      Optional(Seq(Seq())) === Some(Seq(Seq()))
     }
 
     "be able to handle strings" in {
@@ -40,5 +39,6 @@ object OptionalSpec extends Specification {
       Optional() === None
     }
   }
+
 
 }
