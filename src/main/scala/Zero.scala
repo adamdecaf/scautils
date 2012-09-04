@@ -34,10 +34,10 @@ trait Zeros {
   implicit def SetZero[A] = new Zero[Set[A]] { val zero: Set[A] = Set[A]() }
 
   implicit def MapZero[A, B] = new Zero[Map[A,B]] { val zero: Map[A, B] = Map[A, B]() }
+  // implicit def LeftZero[A] = new Zero[Either[A, Nothing]] { val zero: Either[A, Nothing] = Left(Zero.mzero[A].zero) }
+  // implicit def RightZero[A] = new Zero[Either[Nothing, A]] { val zero: Either[Nothing, A] = Right(Zero.mzero[A].zero) }
 }
 
 object Zero extends Zeros {
-
   def mzero[A](implicit zero: Zero[A]) = zero
-
 }
