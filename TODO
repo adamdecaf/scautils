@@ -1,0 +1,5 @@
+# scautils
+
+- Add implicits for creating the data types that are represented so far.
+- Clean up implementations
+- Thow some things into an object/trait pair so they are easily imported?
