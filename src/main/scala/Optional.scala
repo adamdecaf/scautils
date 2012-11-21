@@ -20,5 +20,9 @@ object Optionals extends Optional
 object Optional {
   import Optionals._
 
-  def apply[A](value: A)(implicit f: A => Option[A]) = f(value)
+  def apply[A](value: A)(implicit f: A => Option[A]): Option[A] = f(value)
+
+  // Is the given item as simple as we can get for an optional
+  def isSimple[A](value: A)(implicit f: A => Option[A]): Boolean =
+    value == f(value)
 }

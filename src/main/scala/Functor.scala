@@ -1,5 +1,6 @@
 package com.scautils
 
 trait Functor[F[_]] {
-  def map[A, B](a: F[A])(f: A => B): F[B]
+  def map[A, B](f: A => B)(a: F[A]): F[B]
+  // def map[B](f: A => B)(a: => F[A]): F[B]
 }

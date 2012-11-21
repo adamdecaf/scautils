@@ -2,7 +2,7 @@ package com.scautils
 
 trait Monad[M[_]] {
   def pure[A](a: A): M[A]
-  def map[A,B](a: M[A])(f: A => M[B]): M[B]
+  def map[A,B](f: A => M[B])(a: => M[A]): M[B]
 }
 
 trait MonadLaw[M[_]] {
