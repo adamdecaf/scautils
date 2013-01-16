@@ -1,5 +1,4 @@
 package com.scautils
-import scala.language.reflectiveCalls
 
 object ForAll extends ForAll
 

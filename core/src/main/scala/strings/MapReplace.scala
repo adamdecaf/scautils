@@ -1,5 +1,4 @@
 package org.scautils.strings
-import scala.language.implicitConversions
 
 object MapReplace {
   private implicit def chrToString(c: Char): String = c.toString

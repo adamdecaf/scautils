@@ -33,13 +33,12 @@ final case class Failure[A](value: Throwable) extends Try[A] {
 }
 
 object Try {
-  import scala.util.control.NonFatal
 
   def apply[A](result: => A) = {
     try {
       Success(result)
     } catch {
-      case NonFatal(e) => Failure(e)
+      case e => Failure(e)
     }
   }
 

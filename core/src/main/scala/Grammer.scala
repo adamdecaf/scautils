@@ -1,5 +1,4 @@
 package com.scautils
-import scala.language.implicitConversions
 
 object Grammer extends Grammer
 
