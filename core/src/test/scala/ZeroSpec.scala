@@ -2,7 +2,8 @@ package com.scautils
 
 import org.specs2.mutable.Specification
 import scala.collection.immutable.{Queue, Stack}
-import Zero._
+import com.scautils.Zeros._
+import com.scautils.Zero.mzero
 
 object ZeroSpec extends Specification {
 

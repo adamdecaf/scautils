@@ -10,6 +10,12 @@ trait Zero[Z] {
   def flatMap[B](implicit zero: Zero[B]) = Zero.mzero[B]
 }
 
+object Zero {
+  def mzero[A](implicit zero: Zero[A]) = zero
+}
+
+object Zeros extends Zeros
+
 trait Zeros {
   implicit def UnitZero = new Zero[Unit] { val zero = () }
   implicit def BigIntZero = new Zero[BigInt] { val zero = BigInt(0) }
@@ -36,8 +42,4 @@ trait Zeros {
   implicit def MapZero[A, B] = new Zero[Map[A,B]] { val zero: Map[A, B] = Map[A, B]() }
   // implicit def LeftZero[A] = new Zero[Either[A, Nothing]] { val zero: Either[A, Nothing] = Left(Zero.mzero[A].zero) }
   // implicit def RightZero[A] = new Zero[Either[Nothing, A]] { val zero: Either[Nothing, A] = Right(Zero.mzero[A].zero) }
-}
-
-object Zero extends Zeros {
-  def mzero[A](implicit zero: Zero[A]) = zero
 }

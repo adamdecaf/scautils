@@ -1,4 +1,5 @@
 package com.scautils
+import scala.language.higherKinds
 
 trait Monad[M[_]] {
   def pure[A](a: A): M[A]

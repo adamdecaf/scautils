@@ -1,4 +1,5 @@
 package com.scautils
+import scala.language.higherKinds
 
 trait Bijective[A, B] {
   def apply(in: A): B

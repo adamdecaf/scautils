@@ -1,4 +1,5 @@
 package com.scautils
+import scala.language.implicitConversions
 
 object ForSome {
 

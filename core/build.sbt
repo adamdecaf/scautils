@@ -4,7 +4,7 @@ scalaVersion := "2.10.0-M7"
 
 libraryDependencies +=  "org.specs2" % "specs2_2.10.0-M7" % "1.12.1.1" % "test"
 
-scalacOptions ++= Seq("-deprecation", "-unchecked")
+scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
 resolvers ++= Seq(
   "snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",

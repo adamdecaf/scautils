@@ -1,4 +1,5 @@
 package com.scautils
+import scala.language.implicitConversions
 
 trait Optional {
   implicit def OptionalBoolean(b: Boolean): Option[Boolean] = if (b == false) None else Some(b)
@@ -10,9 +11,9 @@ trait Optional {
   implicit def OptionalInt(i: Int): Option[Int]             = if (i == 0) None else Some(i)
   implicit def OptionalLong(l: Long): Option[Long]          = if (l == 0L) None else Some(l)
   implicit def OptionalShort(s: Short): Option[Short]       = if (s == 0.toShort) None else Some(s)
-  implicit def OptionalString(s: String): Option[String]    = if (s.length == 0) None else Some(s)
+  implicit def OptionalString(s: String): Option[String]    = if (s.length == 0 || s.isEmpty || s == null) None else Some(s)
   implicit def OptionalUnit(u: Unit): Option[Unit]          = None
-  implicit def OptionalIterable[I <: Iterable[_]](iter: I)  = if (iter.isEmpty) None else Some(iter)
+  implicit def OptionalIterable[I <: Iterable[_]](iter: I)  = if (iter.isEmpty || iter == null) None else Some(iter)
 }
 
 object Optionals extends Optional

@@ -23,6 +23,5 @@ class Chain[T] private(private val value: T) {
     case false => new Chain(Option.empty[T])
   }
 
-  @implicitNotFound(msg = "Cannot find Chain.toOption type class for ${T}")
   def toOption()(implicit f: T => Option[T]): Option[T] = Optional(value)(f)
 }

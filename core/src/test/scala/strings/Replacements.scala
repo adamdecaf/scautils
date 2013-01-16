@@ -4,6 +4,7 @@ import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
 
 object ReplacementsSpec extends Specification {
+  skipAll
 
   "Using the Replacements to work over a string" should {
     "replace values based on the tokens" in new context {
