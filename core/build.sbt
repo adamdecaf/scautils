@@ -1,6 +1,6 @@
 name := "scautils"
 
-organization := "com.nom"
+organization := "com.scautils"
 
 crossScalaVersions := Seq("2.9.1", "2.9.2", "2.10.0")
 

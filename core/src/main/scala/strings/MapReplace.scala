@@ -1,4 +1,4 @@
-package org.scautils.strings
+package com.scautils.strings
 
 object MapReplace {
   private implicit def chrToString(c: Char): String = c.toString

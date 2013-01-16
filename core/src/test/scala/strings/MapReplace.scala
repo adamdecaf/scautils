@@ -1,4 +1,4 @@
-package org.scautils.strings
+package com.scautils.strings
 
 import org.specs2.mutable.Specification
 import org.specs2.specification.Scope

@@ -1,4 +1,4 @@
-package org.scautils
+package com.scautils
 
 object DateProvider {
 
