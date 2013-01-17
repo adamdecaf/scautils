@@ -1,4 +1,5 @@
 package com.scautils
+import scala.language.implicitConversions
 
 trait Optional {
   implicit def OptionalBoolean(b: Boolean): Option[Boolean] = if (b == false) None else Some(b)
