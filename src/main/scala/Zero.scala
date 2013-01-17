@@ -11,9 +11,7 @@ object Zero {
   def mzero[A](implicit zero: Zero[A]) = zero
 }
 
-object Zeros extends Zeros
-
-trait Zeros {
+object Zeros {
   implicit def UnitZero = new Zero[Unit] { val zero = () }
   implicit def BigIntZero = new Zero[BigInt] { val zero = BigInt(0) }
   implicit def ByteZero = new Zero[Byte] { val zero = 0.toByte }

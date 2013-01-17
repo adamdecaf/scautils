@@ -1,5 +1,4 @@
 package com.scautils
-
 import org.specs2.mutable.Specification
 
 object OptionalSpec extends Specification {
