@@ -27,7 +27,7 @@ object ZeroSpec extends Specification {
       mzero[Stack[A]].zero  === Stack[A]()
       mzero[Stream[A]].zero === Stream[A]()
       mzero[Vector[A]].zero === Vector[A]()
-      //mzero[Array[A]].zero  === Array[A]()
+      mzero[Array[A]].zero  === Array[A]()
       mzero[List[A]].zero   === List[A]()
       mzero[Option[A]].zero === Option.empty[A]
       mzero[Queue[A]].zero  === Queue[A]()

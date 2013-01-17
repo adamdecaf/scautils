@@ -1,8 +1,8 @@
 name := "scautils"
 
-organization := "com.scautils"
+organization := "org.decaf"
 
-crossScalaVersions := Seq("2.9.1", "2.9.2", "2.10.0")
+scalaVersion := "2.10.0"
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
@@ -13,7 +13,7 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.specs2" %% "specs2" % "1.12.3" % "test")
+  "org.specs2" %% "specs2" % "1.13" % "test")
 
 credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
