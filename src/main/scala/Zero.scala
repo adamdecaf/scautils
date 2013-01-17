@@ -5,9 +5,6 @@ import scala.collection.immutable.{Queue, Stack}
 
 trait Zero[Z] {
   val zero: Z
-
-  def map[B](implicit zero: Zero[B]) = Zero.mzero[B]
-  def flatMap[B](implicit zero: Zero[B]) = Zero.mzero[B]
 }
 
 object Zero {
