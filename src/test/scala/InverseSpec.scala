@@ -21,7 +21,10 @@ object InverseSpec extends Specification {
     }
 
     "and work for collection types" in {
-      minverse(List(12, 51)).inverse === List(-12, -51)
+      minverse(List(12, 51)).inverse            === List(-12, -51)
+      minverse(Some(12)).inverse                === Some(-12)
+      minverse(None).inverse                    === None
+      minverse(Map(1 -> -2L, -3 -> 4L)).inverse === Map(-1 -> 2L, 3 -> -4L)
     }
   }
 }
