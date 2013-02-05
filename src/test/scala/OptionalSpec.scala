@@ -1,4 +1,6 @@
 package com.scautils
+
+import java.io.{File, FileInputStream, InputStream}
 import org.specs2.mutable.Specification
 
 object OptionalSpec extends Specification {
@@ -39,5 +41,21 @@ object OptionalSpec extends Specification {
     }
   }
 
+  "Work for extra values" should {
+    "work for InputStream's" in {
+      lazy val empty: InputStream = null
+      lazy val full: InputStream  = new FileInputStream("src/test/scala/OptionalSpec.scala")
+      Optional(empty) must beNone
+      Optional(full) must beSome
+    }
 
+    "work for Files/paths" in {
+      val empty: File = null
+      val empty2: File = new File("/sdasda/sdasdsdsd/dsdads")
+      val full: File = new File("src/test/scala/OptionalSpec.scala")
+      Optional(empty) must beNone
+      Optional(empty2) must beNone
+      Optional(full) must beSome
+    }
+  }
 }

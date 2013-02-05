@@ -1,7 +1,15 @@
 package com.scautils
+
+import java.io.{File, InputStream}
 import scala.language.implicitConversions
 
-trait Optional {
+object Optional {
+  import Optionals._
+
+  @inline def apply[A](value: A)(implicit f: A => Option[A]): Option[A] = f(value)
+}
+
+object Optionals {
   implicit def OptionalBoolean(b: Boolean): Option[Boolean] = if (b == false) None else Some(b)
   implicit def OptionalBigInt(i: BigInt): Option[BigInt]    = if (i == BigInt(0)) None else Some(i)
   implicit def OptionalByte(b: Byte): Option[Byte]          = if (b == 0.toByte) None else Some(b)
@@ -14,16 +22,22 @@ trait Optional {
   implicit def OptionalString(s: String): Option[String]    = if (s.length == 0 || s.isEmpty || s == null) None else Some(s)
   implicit def OptionalUnit(u: Unit): Option[Unit]          = None
   implicit def OptionalIterable[I <: Iterable[_]](iter: I)  = if (iter.isEmpty || iter == null) None else Some(iter)
-}
 
-object Optionals extends Optional
+  implicit def OptionalInputStream(stream: InputStream): Option[InputStream] = try {
+    val is = stream
+    if (is != null && is.available() >= 0) Some(is) else None
+  } catch {
+    case _: Throwable => None
+  }
 
-object Optional {
-  import Optionals._
+  implicit def OptionalFileByPath(path: String): Option[File] = {
+    lazy val file = new File(path)
+    if (file.exists) Some(file) else None
+  }
 
-  def apply[A](value: A)(implicit f: A => Option[A]): Option[A] = f(value)
-
-  // Is the given item as simple as we can get for an optional
-  def isSimple[A](value: A)(implicit f: A => Option[A]): Boolean =
-    value == f(value)
+  implicit def OptionalFile(file: File): Option[File] = try {
+    if (file.exists) Some(file) else None
+  } catch {
+    case _: Throwable => None
+  }
 }
