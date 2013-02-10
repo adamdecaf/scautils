@@ -1,6 +1,16 @@
 package com.scautils
 import scala.language.higherKinds
 
-abstract class Monoid[M[_], A](override protected val value: A) extends Semigroup[M, A](value) {
-  def identity(implicit mzero: Zero[A]) = mzero.zero
+trait Monoid[M] {
+  def zero: M
+  def append(x: M, y: M): M
+}
+
+object Monoid {
+  def apply[M: Monoid]: Monoid[M] = implicitly[Monoid[M]]
+
+  def apply[M: Zero](f: (M, M) => M): Monoid[M] = new Monoid[M] {
+    def zero: M = implicitly[Zero[M]].zero
+    def append(x: M, y: M): M = f(x, y)
+  }
 }
