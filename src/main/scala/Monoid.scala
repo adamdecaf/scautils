@@ -1,9 +1,8 @@
 package com.scautils
 import scala.language.higherKinds
 
-trait Monoid[M] {
+trait Monoid[M] extends Semigroup[M] {
   def zero: M
-  def append(x: M, y: M): M
 }
 
 object Monoid {

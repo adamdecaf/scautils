@@ -1,6 +1,14 @@
 package com.scautils
 import scala.language.higherKinds
 
-abstract class Semigroup[M[_], A](protected val value: A) {
-  def append(f: A => A)(o: A): A
+trait Semigroup[S] {
+  def append(x: S, y: S): S
+}
+
+object Semigroup {
+  def apply[S: Semigroup]: Semigroup[S] = implicitly[Semigroup[S]]
+
+  def apply[S: Zero](f: (S, S) => S): Semigroup[S] = new Semigroup[S] {
+    def append(x: S, y: S): S = f(x, y)
+  }
 }
