@@ -7,12 +7,15 @@ scalaVersion := "2.10.0"
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
 resolvers ++= Seq(
+  "Sonatype OSS Releases" at "http://oss.sonatype.org/content/repositories/releases/",
+  "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
   "snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
   "releases"  at "http://oss.sonatype.org/content/repositories/releases",
   "typesafe" at "http://repo.typesafe.com/typesafe/ivy-releases/"
 )
 
 libraryDependencies ++= Seq(
+  "com.chuusai" %% "shapeless" % "1.2.3",
   "org.specs2" %% "specs2" % "1.13" % "test")
 
 credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
