@@ -19,8 +19,6 @@ object functions {
     def summ(f: (A, A) => A)(implicit z: Zero[A]): A = t.foldLeft(z.zero)(f)
   }
 
-  def plus[@specialized(Double, Int, Long) T](a: T, b: T)(implicit m: Monoid[T]): T = m.append(a, b)
-
   //def plus[@specialized(Double, Int, Long) T]
 
 
