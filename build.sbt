@@ -2,7 +2,9 @@ name := "scautils"
 
 organization := "org.decaf"
 
-scalaVersion := "2.10.0"
+scalaVersion := "2.10.1-RC1"
+
+crossScalaVersions := Seq("2.10.0", "2.10.1-RC1", "2.11.0-SNAPSHOT")
 
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
